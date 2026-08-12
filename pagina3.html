@@ -1,0 +1,880 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RANGER METHOD | Entrenamiento</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #030b16;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* FONDO */
+
+        body::before {
+            content: "";
+            position: fixed;
+
+            width: 600px;
+            height: 600px;
+
+            background: #0759a8;
+
+            border-radius: 50%;
+
+            filter: blur(150px);
+
+            opacity: 0.14;
+
+            top: 20%;
+            left: -250px;
+
+            animation: glow 6s ease-in-out infinite alternate;
+
+            z-index: -1;
+        }
+
+        @keyframes glow {
+
+            from {
+                transform: scale(1);
+                opacity: 0.10;
+            }
+
+            to {
+                transform: scale(1.3);
+                opacity: 0.20;
+            }
+
+        }
+
+
+        /* NAVBAR */
+
+        nav {
+
+            height: 80px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+
+            background: rgba(3,11,22,0.85);
+
+        }
+
+        .logo {
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            letter-spacing: 3px;
+
+        }
+
+        .logo span {
+            color: #168cff;
+        }
+
+        .nav-buttons {
+
+            display: flex;
+
+            gap: 5px;
+
+        }
+
+        .nav-buttons a {
+
+            color: #9fb1c3;
+
+            text-decoration: none;
+
+            padding: 10px 13px;
+
+            border-radius: 4px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+
+        }
+
+        .nav-buttons a:hover {
+
+            color: white;
+
+            background: #102b45;
+
+        }
+
+
+        /* HEADER */
+
+        .header {
+
+            width: 85%;
+
+            max-width: 1100px;
+
+            margin: auto;
+
+            padding: 70px 0 40px;
+
+        }
+
+        .tag {
+
+            color: #168cff;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            letter-spacing: 4px;
+
+            margin-bottom: 18px;
+
+        }
+
+        .header h1 {
+
+            font-size: clamp(50px, 8vw, 90px);
+
+            line-height: 0.95;
+
+            letter-spacing: -3px;
+
+            margin-bottom: 25px;
+
+            animation: appear 1s ease;
+
+        }
+
+        .header h1 span {
+            color: #168cff;
+        }
+
+        .header p {
+
+            color: #8fa5b9;
+
+            max-width: 650px;
+
+            line-height: 1.7;
+
+            font-size: 17px;
+
+            animation: appear 1.3s ease;
+
+        }
+
+        @keyframes appear {
+
+            from {
+
+                opacity: 0;
+
+                transform: translateY(25px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: translateY(0);
+
+            }
+
+        }
+
+
+        /* SELECTOR */
+
+        .selector {
+
+            width: 85%;
+
+            max-width: 1100px;
+
+            margin: 30px auto;
+
+            display: flex;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+        }
+
+        .filter {
+
+            padding: 12px 20px;
+
+            border: 1px solid #214667;
+
+            background: #071525;
+
+            color: #a9bacb;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            transition: 0.3s;
+
+        }
+
+        .filter:hover,
+        .filter.active {
+
+            background: #168cff;
+
+            border-color: #168cff;
+
+            color: white;
+
+        }
+
+
+        /* EJERCICIOS */
+
+        .workouts {
+
+            width: 85%;
+
+            max-width: 1100px;
+
+            margin: 25px auto 80px;
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 20px;
+
+        }
+
+        .exercise {
+
+            background: #071525;
+
+            border: 1px solid #173451;
+
+            border-radius: 7px;
+
+            overflow: hidden;
+
+            transition: 0.4s;
+
+        }
+
+        .exercise:hover {
+
+            transform: translateY(-7px);
+
+            border-color: #168cff;
+
+        }
+
+        .exercise-top {
+
+            height: 100px;
+
+            background: #0a1d31;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 35px;
+
+            color: #168cff;
+
+        }
+
+        .exercise-content {
+
+            padding: 25px;
+
+        }
+
+        .exercise-content small {
+
+            color: #168cff;
+
+            font-size: 10px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+        }
+
+        .exercise h2 {
+
+            margin: 10px 0;
+
+            font-size: 21px;
+
+        }
+
+        .exercise p {
+
+            color: #71879c;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* RUTINA */
+
+        .routine {
+
+            width: 85%;
+
+            max-width: 1100px;
+
+            margin: 0 auto 80px;
+
+            padding: 35px;
+
+            background: #071525;
+
+            border: 1px solid #173451;
+
+            border-left: 3px solid #168cff;
+
+            display: none;
+
+            animation: appear 0.5s ease;
+
+        }
+
+        .routine.show {
+            display: block;
+        }
+
+        .routine h2 {
+
+            font-size: 25px;
+
+            margin-bottom: 20px;
+
+        }
+
+        .routine-list {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 10px;
+
+        }
+
+        .routine-item {
+
+            padding: 15px;
+
+            background: #030b16;
+
+            border: 1px solid #132d46;
+
+            color: #b9c9d8;
+
+            font-size: 14px;
+
+        }
+
+        .routine-item span {
+
+            color: #168cff;
+
+            font-weight: bold;
+
+            margin-right: 10px;
+
+        }
+
+
+        /* BOTONES */
+
+        .bottom-buttons {
+
+            width: 85%;
+
+            max-width: 1100px;
+
+            margin: 0 auto 70px;
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+        }
+
+        .button {
+
+            text-decoration: none;
+
+            color: white;
+
+            background: #081727;
+
+            border: 1px solid #214667;
+
+            padding: 14px 24px;
+
+            border-radius: 5px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            transition: 0.3s;
+
+        }
+
+        .button:hover {
+
+            background: #168cff;
+
+            border-color: #168cff;
+
+            transform: translateY(-4px);
+
+        }
+
+
+        /* RESPONSIVE */
+
+        @media (max-width: 850px) {
+
+            nav {
+
+                justify-content: center;
+
+            }
+
+            .nav-buttons {
+
+                display: none;
+
+            }
+
+            .header,
+            .selector,
+            .workouts,
+            .routine,
+            .bottom-buttons {
+
+                width: 88%;
+
+            }
+
+            .workouts {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .routine-list {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+            RANGER <span>METHOD</span>
+        </div>
+
+
+        <div class="nav-buttons">
+
+            <a href="index.html">INICIO</a>
+
+            <a href="pagina2.html">MÉTODO</a>
+
+            <a href="pagina4.html">INFORMACIÓN</a>
+
+            <a href="pagina5.html">CONTACTO</a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="tag">
+            TRAINING SYSTEM
+        </div>
+
+        <h1>
+            ENTRENA<br>
+            <span>CON PROPÓSITO.</span>
+        </h1>
+
+        <p>
+            Conoce algunos de los movimientos fundamentales
+            utilizados dentro del RANGER METHOD. Selecciona
+            una categoría para explorar diferentes áreas
+            del entrenamiento.
+        </p>
+
+    </header>
+
+
+    <!-- FILTROS -->
+
+    <div class="selector">
+
+        <button class="filter active" onclick="filtrar('todos', this)">
+            TODOS
+        </button>
+
+        <button class="filter" onclick="filtrar('fuerza', this)">
+            FUERZA
+        </button>
+
+        <button class="filter" onclick="filtrar('piernas', this)">
+            PIERNAS
+        </button>
+
+        <button class="filter" onclick="filtrar('core', this)">
+            CORE
+        </button>
+
+    </div>
+
+
+    <!-- EJERCICIOS -->
+
+    <section class="workouts">
+
+
+        <div class="exercise" data-category="fuerza">
+
+            <div class="exercise-top">
+                01
+            </div>
+
+            <div class="exercise-content">
+
+                <small>FUERZA</small>
+
+                <h2>Push Up</h2>
+
+                <p>
+                    Movimiento fundamental para desarrollar
+                    fuerza en el tren superior y mejorar el
+                    control corporal.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="exercise" data-category="piernas">
+
+            <div class="exercise-top">
+                02
+            </div>
+
+            <div class="exercise-content">
+
+                <small>PIERNAS</small>
+
+                <h2>Squat</h2>
+
+                <p>
+                    Ejercicio básico para trabajar la fuerza
+                    y estabilidad de las piernas.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="exercise" data-category="fuerza">
+
+            <div class="exercise-top">
+                03
+            </div>
+
+            <div class="exercise-content">
+
+                <small>FUERZA</small>
+
+                <h2>Pull Up</h2>
+
+                <p>
+                    Movimiento enfocado en la espalda y
+                    el tren superior utilizando el propio
+                    peso corporal.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="exercise" data-category="piernas">
+
+            <div class="exercise-top">
+                04
+            </div>
+
+            <div class="exercise-content">
+
+                <small>PIERNAS</small>
+
+                <h2>Lunge</h2>
+
+                <p>
+                    Trabajo unilateral para desarrollar
+                    fuerza, equilibrio y estabilidad.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="exercise" data-category="core">
+
+            <div class="exercise-top">
+                05
+            </div>
+
+            <div class="exercise-content">
+
+                <small>CORE</small>
+
+                <h2>Plank</h2>
+
+                <p>
+                    Ejercicio isométrico enfocado en la
+                    estabilidad y control del centro corporal.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="exercise" data-category="core">
+
+            <div class="exercise-top">
+                06
+            </div>
+
+            <div class="exercise-content">
+
+                <small>CORE</small>
+
+                <h2>Mountain Climber</h2>
+
+                <p>
+                    Movimiento dinámico que combina trabajo
+                    del core con acondicionamiento físico.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RUTINA INTERACTIVA -->
+
+    <section class="routine" id="routine">
+
+        <h2>
+            RUTINA RANGER
+        </h2>
+
+        <div class="routine-list">
+
+            <div class="routine-item">
+                <span>01</span>
+                Calentamiento y movilidad
+            </div>
+
+            <div class="routine-item">
+                <span>02</span>
+                Trabajo de fuerza
+            </div>
+
+            <div class="routine-item">
+                <span>03</span>
+                Trabajo de piernas
+            </div>
+
+            <div class="routine-item">
+                <span>04</span>
+                Entrenamiento de core
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BOTÓN PARA MOSTRAR RUTINA -->
+
+    <div class="bottom-buttons">
+
+        <button class="button" onclick="mostrarRutina()">
+            MOSTRAR RUTINA
+        </button>
+
+        <a href="index.html" class="button">
+            ← INICIO
+        </a>
+
+        <a href="pagina2.html" class="button">
+            MÉTODO
+        </a>
+
+        <a href="pagina4.html" class="button">
+            INFORMACIÓN
+        </a>
+
+        <a href="pagina5.html" class="button">
+            CONTACTO
+        </a>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function filtrar(categoria, boton) {
+
+            const ejercicios =
+                document.querySelectorAll(".exercise");
+
+            const botones =
+                document.querySelectorAll(".filter");
+
+
+            botones.forEach(function(btn) {
+
+                btn.classList.remove("active");
+
+            });
+
+
+            boton.classList.add("active");
+
+
+            ejercicios.forEach(function(ejercicio) {
+
+                if (
+                    categoria === "todos" ||
+                    ejercicio.dataset.category === categoria
+                ) {
+
+                    ejercicio.style.display = "block";
+
+                } else {
+
+                    ejercicio.style.display = "none";
+
+                }
+
+            });
+
+        }
+
+
+        function mostrarRutina() {
+
+            const rutina =
+                document.getElementById("routine");
+
+            rutina.classList.toggle("show");
+
+
+            if (rutina.classList.contains("show")) {
+
+                rutina.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            }
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
+```
